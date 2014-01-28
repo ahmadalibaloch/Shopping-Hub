@@ -1,0 +1,50 @@
+<h1><?= $product->getName() ?></h1>
+
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+
+<form method=post>
+	<table class=listing_tb>
+		<tr>
+			<td  >Product Name:</td>
+			<td><?= $product->getName(); ?></td>
+			<td rowspan=6>
+				<img src="<?= $product->getPhoto(300)?>" height=300 >
+			</td>
+		</tr>
+		<tr>
+			<td>Product Price:</td>
+			<td><?= $product->getPrice() ?> Rs.</td>
+		</tr>
+		<tr>
+			<td>Product Status:</td>
+			<td><?= $product->getQuantity()>0?'Available':'Out of Stock' ?></td>
+		</tr>
+		<tr>
+			<td>Product Owner:</td>
+			<td>
+				<a href="<?= SITE_URL ?>owner.php?id=<?= $product->getOwner()->getId()?>"><?= $product->getOwner()->getName(); ?></a>
+			</td>
+		</tr>
+		<tr>
+			<td>Owner Rating:</td>
+			<td><?= $product->getOwner()->getRating(); ?></td>
+		</tr>
+		<tr>
+		</tr>
+	</table>
+	<? if( USER_ROLE == 'customer'){ ?>
+	<div class=info>
+		<input type=submit name=purchase value="Add to Cart" />
+	</div>
+	<? }?>
+</form>
+
+<? if(( USER_ROLE == 'owner' && USER_ID == $product->getOwner()->getUserId())){ ?>
+<div class=info>
+	<a href="<?= SITE_URL ?>addProduct.php?edit=<?= $product->getId()?>">Edit</a> |
+	<a href="<?= SITE_URL ?>products.php?del=<?= $product->getId()?>">Delete</a>
+</div>
+<? } ?>
+

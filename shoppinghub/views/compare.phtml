@@ -1,0 +1,113 @@
+<h1>Compare Products</h1>
+
+<form method=post>
+	<table class=listing_tb>
+		<tr>
+			<td>Product One</td>
+			<td>
+				<select name=pid_1>
+					<? foreach($products as $p){ ?>
+					<option value="<?= $p->getId() ?>"
+						<? if($p->getId() == array_value($_POST, 'pid_1')) echo 'selected' ?>
+					><?= $p->getName() ?></option>
+					<? } ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Product Two</td>
+			<td>
+				<select name=pid_2>
+					<? foreach($products as $p){ ?>
+					<option value="<?= $p->getId() ?>"
+						<? if($p->getId() == array_value($_POST, 'pid_2')) echo 'selected' ?>
+					><?= $p->getName() ?></option>
+					<? } ?>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<div class=info>
+		<input type=submit value=Compare />
+	</div>
+</form>
+<table>
+	<tr>
+		<td valign=top>
+			<h1>Product 1</h1>
+			<? if(isset($p1)) { ?>
+			<table class=listing_tb>
+				<tr>
+					<td  >Product Name:</td>
+					<td><?= $p1->getName(); ?></td>
+					<td rowspan=5>
+						<? if($p1->getPhoto()) { ?>
+							<img src="<?= $p1->getPhoto(200) ?>">
+							<? } else { ?>
+							No Image
+						<? } ?>
+					</td>
+				</tr>
+				<tr>
+					<td>Product Price:</td>
+					<td><?= $p1->getPrice() ?> Rs.</td>
+				</tr>
+				<tr>
+					<td>Product Status:</td>
+					<td><?= $p1->getQuantity()>0?'Available':'Out of Stock' ?></td>
+				</tr>
+				<tr>
+					<td>Product Owner:</td>
+					<td>
+						<a href="<?= SITE_URL ?>owner.php?id=<?= $p1->getOwner()->getId()?>"><?= $p1->getOwner()->getName(); ?></a>
+					</td>
+				</tr>
+				<tr>
+					<td>Owner Rating:</td>
+					<td><?= $p1->getOwner()->getRating()?$p1->getOwner()->getRating():'Not rated by any one'; ?></td>
+				</tr>
+			</table>
+			<? }else{ ?>
+			Please select a product
+			<? } ?>
+		</td>
+		<td valign=top>
+			<h1>Product 2</h1>
+			<? if(isset($p2)) { ?>
+			<table class=listing_tb>
+				<tr>
+					<td  >Product Name:</td>
+					<td><?= $p2->getName(); ?></td>
+					<td rowspan=5>
+						<? if($p2->getPhoto()) { ?>
+						<img src="<?= $p2->getPhoto(200) ?>">
+						<? } else { ?>
+						No Image
+						<? } ?>
+					</td>
+				</tr>
+				<tr>
+					<td>Product Price:</td>
+					<td><?= $p2->getPrice() ?> Rs. </td>
+				</tr>
+				<tr>
+					<td>Product Status:</td>
+					<td><?= $p2->getQuantity()>0?'Available':'Out of Stock' ?></td>
+				</tr>
+				<tr>
+					<td>Product Owner:</td>
+					<td>
+						<a href="<?= SITE_URL ?>owner.php?id=<?= $p2->getOwner()->getId()?>"><?= $p2->getOwner()->getName(); ?></a>
+					</td>
+				</tr>
+				<tr>
+					<td>Owner Rating:</td>
+					<td><?= $p2->getOwner()->getRating()?$p2->getOwner()->getRating():'Not rated by any one'; ?></td>
+				</tr>
+			</table>
+			<? }else{ ?>
+			Please select a product
+			<? } ?>
+		</td>
+	</tr>
+</table>

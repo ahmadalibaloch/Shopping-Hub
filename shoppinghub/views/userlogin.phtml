@@ -1,0 +1,29 @@
+<? if(USER_ID == 1){ ?>
+<h1>User Login</h1>
+<form method=POST action="<?= SITE_URL ?>userlogin.php">
+	<table>
+		<tr>
+			<th width=20%>User Name</th>
+			<td>
+				<input type=text placeholder='enter you username' name=username required='required'/>
+			</td>
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td>
+				<input type=password value='' name=password required='required'/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=center>
+				<input type=submit value='Login' name=submit />
+			</td>
+		</tr>		
+	</table>
+</form>
+<h1>Join Shopping Hub</h1>
+<div class=info>
+	<input type=button value='Register as Customer' onclick="location.href='register.php?reg=customer'" />
+	<input type=button value='Register as Owner' onclick="location.href='register.php?reg=owner'" />
+</div>
+<? } ?>

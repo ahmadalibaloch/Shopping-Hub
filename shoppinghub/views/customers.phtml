@@ -1,0 +1,28 @@
+<table class=listing_tb width=100%>
+	<tr>
+		<th>Photo</th>
+		<th>Name</th>
+		<th>Phone></th>
+		<th>Email</th>
+		<th>Address</th>
+		<th>Products Bought</th>
+		<th>Orders</th>
+		<th>Operations</th>
+	</tr>
+	<? foreach($customers as $c){ ?>
+	<tr>
+		<td><img src="<?= $c->getPhoto(100) ?>" /></td>
+		<td><?= $c->getName() ?></td>
+		<td><?= $c->getPhone() ?></td>
+		<td><?= $c->getEmail() ?></td>
+		<td><?= $c->getAddress() ?></td>	
+		<td><?= $c->getAddress() ?></td>	
+		<td><?= $c->getAddress() ?></td>	
+		<td>
+			<? if(USER_ROLE == 'admin') { ?>
+			<a href="<?= SITE_URL ?>customers.php?del=<?= $c->getId() ?>">Delete</a>
+			<? } ?>
+		</td>
+	</tr>
+	<? } ?>
+</table>

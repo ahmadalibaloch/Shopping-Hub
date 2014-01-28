@@ -1,0 +1,63 @@
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+<form method=POST action="<?= SITE_URL ?>orders.php"  enctype="multipart/form-data">
+	<table class=listing_tb width=100%>
+		<tr>
+			<th><strong>Order Id</strong></th>
+			<th><strong>Order Date</strong></th>
+			<th><strong>Order Status</strong></th>
+			<th><strong>Total Products</strong></th>
+			<th><strong>Total Price</strong></th>
+			<th><strong>Shipping Address</strong></th>
+			<th><strong>Expected Delivery Date</strong></th>
+			<th><strong>Draft</strong></th>
+			<? if(USER_ROLE == 'admin') { ?>
+			<th><strong>Process</strong></th>
+			<? } ?>
+		</tr>
+		<? foreach($orders as $o){ ?>
+		<tr>
+			<td><?= $o->getId() ?></td>
+			<td><?= $o->getOrderDate() ?></td>
+			<td><?= $o->getStatus() ?></td>
+			<td><?= $o->getProductCount() ?> (<a href="<?= SITE_URL ?>orderDetails.php?id=<?= $o->getId() ?>"> View </a>)</td>
+			<td><?= $o->getTotalPrice() ?> Rs.</td>
+			<td><?= $o->getShippingAddress() ?></td>
+			<td><?= $o->getOrderDate() ?></td>
+			<? if(USER_ROLE == 'customer') { ?>
+			<td>
+					<? if($o->getDraft(200)) { ?>
+					<a href="<?= SITE_URL ?>orderDetails.php?id=<?= $o->getId() ?>"> View </a>
+					<? } else { ?>
+					<a href="<?= SITE_URL ?>draft.php?upload=<?= $o->getId() ?>"> Upload </a>
+					<? } ?>
+			</td>
+			<? } ?>
+			<? if(USER_ROLE == 'admin') { ?>
+			<td>
+				<? if($o->getDraft(200)) { ?>
+					<a href="<?= SITE_URL ?>orderDetails.php?id=<?= $o->getId() ?>"> View </a>
+					<? } else { ?>
+					Waiting
+				<? } ?>
+			</td>
+			<? } ?>
+			<? if(USER_ROLE == 'admin') { ?>
+			<td>
+				<input type=hidden name="id[]" value=<?= $o->getId() ?> />
+				<input type=checkbox name="<?= $o->getId() ?>" 
+				<?= $o->getStatus() == 'Processed'?'checked=checked':'' ?>
+				<?= !$o->getDraft(200)?'disabled=disabled':'' ?>	/>	
+			</td>
+			<? } ?>
+		<? } ?>
+		</tr>
+		<tr>
+			<td>
+				<input type=submit name=update value=Update />
+			</td>
+		</tr>
+	</table>
+</form>
+<?= $pager->getLinks() ?>

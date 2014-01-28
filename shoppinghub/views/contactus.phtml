@@ -1,0 +1,30 @@
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+<form method=POST action="<?= SITE_URL ?>contactus.php">
+	<table class=listing_tb width=100%>
+	<tr>
+		<td>Name</td>
+		<td><Input type=text required='required' name=name /></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td>
+			<Input type=email required='required' name=email placeholder='example@domain.com' />
+		</td>
+	</tr>
+	<tr>
+		<td>Topic</td>
+		<td><Input type=text required='required' name=topic style="width:300px;"/></td>
+	</tr>
+	<tr>
+		<td>Message</td>
+		<td><textarea type=text required='required' name=message  style="width:300px; height:200px; resize:none;"></textarea></td>
+	</tr>
+	<tr>
+		<td colspan=2 align=center>
+			<input type=submit value='Send' name=submit />
+		</td>
+	</tr>
+</table>
+</form>

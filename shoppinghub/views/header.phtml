@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title><?= $title ?>- Shopping Hub</title>
+		<link type="text/css" rel=stylesheet href="<?= SITE_URL ?>css/style.css">
+	</head>
+	<body>
+		<div id=body>
+			<div class=header>
+				<span class=links style="border-left: 1px solid black;border-bottom: 1px solid black; padding-bottom:5px; padding-left: 5px">
+					<? if(USER_ROLE == 'customer') { ?>
+					<a href="<?=SITE_URL ?>cart.php">
+						<img src="<?= SITE_URL?>images/cart.png" height=20 align=bottom />Cart 
+						<?= isset($cart_count)?$cart_count:array_value($_SESSION,'cart_count') ?>  | 
+					</a>
+					<? } ?>
+					<a href="<?= SITE_URL ?>account.php"><?= USER_NAME ?> <span style="color:gray">(<?= USER_ROLE ?>) </span> </a>
+					<?= array_value($_SESSION,'uid')? '| <a href="'.SITE_URL.'logout.php">Logout</a>':'' ?>
+					<?= USER_ID==1?
+					'| <a href="'.SITE_URL.'userlogin.php">Login</a> |
+					<a href="'.SITE_URL.'register.php">Sign Up</a>':'' ?>
+				</span>
+				<a href="<?= SITE_URL ?>" class=logo><img src="<?=SITE_URL ?>images/shoppinghub.jpg"></a>
+				<form method=GET action="<?=SITE_URL ?>products.php" class=search>
+					<span class=title>Shopping Hub</span>
+					<input type=text name=search value="<?= array_value($_GET, 'search') ?>" placeholder='search shopping hub' />
+					<input type=submit value=Search />
+				</form>
+			</div>
+			<div id="nav">
+				<ul>
+					<li class="active"><a href="<?= SITE_URL ?>"><span>Home</span></a></li>
+					
+					<li class="has-sub"><a href="<?= SITE_URL ?>categories.php"><span>Categories</span></a>
+						<? if(USER_ROLE == 'admin') { ?>
+						<ul>
+							<li><a href="<?= SITE_URL ?>addCategory.php"><span>Add Category</span></a></li>
+						</ul>
+						<? } ?>
+					</li>
+					
+					<li class="has-sub"><a href="<?= SITE_URL ?>products.php"><span>Products</span></a>
+						<? if(USER_ROLE == 'owner') { ?>
+						<ul>
+							<li><a href="<?= SITE_URL ?>addProduct.php"><span>Add Product</span></a></li>
+							<li><a href="<?= SITE_URL ?>compare.php"><span>Compare Products</span></a></li>
+						</ul>
+						<? } ?>
+					</li>
+					
+					<? if(USER_ROLE == 'customer' || USER_ROLE == 'admin') { ?>
+					<li><a href="<?= SITE_URL ?>orders.php"><span>Orders</span></a></li>
+					<? } ?>
+					
+					<li class="has-sub"><a href="<?= SITE_URL ?>owners.php"><span>Owners</span></a>	</li>
+					
+					<? if(USER_ROLE == 'admin') { ?>
+					<li class="has-sub"><a href="<?= SITE_URL ?>customers.php"><span>Customers</span></a></li>
+					<? } ?>
+					
+				   <li><a href="<?= SITE_URL ?>aboutus.php"><span>About Us</span></a></li>
+				     <li><a href="<?= SITE_URL ?>contactus.php"><span>Constact Us</span></a></li>
+				   <? if(USER_ID != 1) { ?>
+				   <li><a href="<?= SITE_URL ?>account.php"><span>My Account</span></a></li>
+				   <? } ?>
+				</ul>
+			</div>
+			<div id=content>

@@ -1,0 +1,27 @@
+<h1>Add New Product Category</h1>
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+	<form method=POST action="<?= SITE_URL ?>addCategory.php"  enctype="multipart/form-data">
+		<? $category = $categories?$categories[0]:'' ?>
+		<input type=hidden name=id value="<?= $category?$category->getId():'' ?>" />
+		<table class=inputforms>
+			<tr>
+				<td>Category Name:</td>
+				<td><input type=text name=name required='required' placeholder='item category name' value="<?= $category?$category->getName():'' ?>"></td>
+			</tr>
+			<tr>
+				<td>Image:</td>
+				<td><input type=file name=image /></td>
+				<td rowspan=5><img src="<?= $category?$category->getImage():'' ?>" /> </td>
+			</tr>
+			<tr>
+				<td>Description:</td>
+				<td><input type=text name=descr placeholder='category details, if any' value="<?= $category?$category->getDescr():'' ?>"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type=submit value="Add"></td>
+			</tr>
+		</table>
+	</form>

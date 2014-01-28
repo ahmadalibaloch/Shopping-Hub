@@ -1,0 +1,33 @@
+<form method=post>
+	<b>Order ID : </b><?= $orderId ?><br />
+	<b>Order Date: </b><?= $orderDate ?><br />
+	<b>Order Status: </b><?= $orderStatus ?><br />
+	<table class='listing_tb'>
+		<? if($message) { ?>
+		<tr>
+			<td colspan=2><?= $message ?></td>
+		</tr>
+		<? } ?>
+		<tr>
+			<th><strong>Product Name</strong></th>
+			<th><strong>Quantity</strong></th>
+			<th><strong>Unit Price</strong></th>
+			<th><strong>Total Price</strong></th>
+		</tr>
+		<? foreach($orderDetails as $od){ ?>
+		<tr>
+			<td><?= $od->getProductName() ?></td>
+			<td><?= $od->getQuantity() ?></td>
+			<td><?= $od->getPrice() ?> Rs.</td>
+			<td><?= $od->getTotalPrice() ?> Rs.</td>
+		</tr>
+		<? } ?>
+		<tr>
+			<td colspan=3><b>Grand Total: </b></td>
+			<td><b><?= $totalPrice ?> Rs.</b></td>
+		</tr>
+	</table>
+	<br />
+	<a href="<?= $draft ?>">View Draft<a>
+</form>
+

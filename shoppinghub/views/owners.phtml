@@ -1,0 +1,41 @@
+<table class=listing_tb width=100%>
+	<tr>
+		<th><strong>Photo</strong></th>
+		<th><strong>Name</strong></th>
+		<th><strong>Total Products</strong></th>
+		<th><strong>Total Categories</strong></th>
+		<th><strong>Rating</strong></th>
+		<th><strong>Operations</strong></th>
+	</tr>
+	<? foreach($owners as $o){ ?>
+	<tr>
+		<td><img src="<?= $o->getPhoto(150) ?>" height=100/></td>
+		<td><?= $o->getName() ?></td>
+		<? if( $o->countProducts() >0) { ?>
+		<td><a href="<?= SITE_URL ?>Products.php?owner=<?= $o->getId() ?>"> View <?= $o->countProducts() ?> Products</a></td>
+		<? } else { ?>
+		<td>--</td>
+		<? } ?>
+		
+		<? if( $o->countCategories() >0) { ?>
+			<td><a href="<?= SITE_URL ?>Categories.php?owner=<?= $o->getId() ?>"> View <?= $o->countCategories() ?> Categories</a></td>
+			<? } else { ?>
+			<td>--</td>
+		<? } ?>
+		
+		<td>
+			<? if( $o->getRating() >0) { ?>
+				<?= $o->getRating() ?>
+			<? } else { ?>
+				--
+			<? } ?>
+		</td>
+		<td>
+			<a href="<?= SITE_URL ?>owner.php?id=<?= $o->getId() ?>">Owner Details</a>
+			<? if(USER_ROLE == 'admin') { ?>
+			| <a href="<?= SITE_URL ?>owners.php?del=<?= $o->getId() ?>">Delete Owner</a>
+			<? } ?>
+		</td>
+	</tr>
+	<? } ?>
+</table>

@@ -1,0 +1,121 @@
+<h1>Search Products</h1>
+<div style="display:inline-block">
+<form action="<?=SITE_URL?>products.php" method="GET">
+	<table>
+		<tr>
+			<th>Enter Search Term</th>
+			<td>
+				<input type="text" name="search" required='required'>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<input type="submit" value="Search" >
+			</td>
+		</tr>
+	</table>
+</form>
+<? if(USER_ID == 1){ ?>
+<h1>User Login</h1>
+<form method=POST action="<?= SITE_URL ?>userlogin.php">
+	<table>
+		<tr>
+			<th width=20%>User Name</th>
+			<td>
+				<input type=text placeholder='enter you username' name=username required='required'/>
+			</td>			
+		</tr>
+		<tr>
+			<th>Password</th>
+			<td>
+				<input type=password value='' name=password required='required'/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 align=center>
+				<input type=submit value='Login' name=submit />
+			</td>
+		</tr>		
+	</table>
+</form>
+<h1>Join Shopping Hub</h1>
+<div class=info>
+	<input type=button value='Register as Customer' onclick="location.href='register.php?reg=customer'" />
+	<input type=button value='Register as Owner' onclick="location.href='register.php?reg=owner'" />
+</div>
+<? }else{ ?>
+	<? if($categories){ ?>
+	<h1>Some Categories</h1>
+	<table class=listing_tb>
+		<tr>
+			<th width=200px><strong>Photo</strong></th>
+			<th width=200px><strong>Name</strong>s</th>
+			<th width=200px><strong>Total Products</strong></th>
+			<th width=200px><strong>Total Owners</strong></th>
+			<th></th>
+		</tr>
+		<? foreach($categories as $c){ ?>
+			<tr>
+				<td><img src="<?= $c->getPhoto(100) ?>" /></td>
+				<td><?= $c->getName() ?></td>
+				<? if( $c->countProducts() >0) { ?>
+					<td><a href="<?= SITE_URL ?>products.php?cat=<?= $c->getId() ?>"> View <?= $c->countProducts() ?> Products</a></td>
+					<? } else { ?>
+					<td>--</td>
+				<? } ?>
+				
+				<? if( $c->countOwners() >0) { ?>
+					<td><a href="<?= SITE_URL ?>owners.php?category=<?= $c->getId() ?>"> View <?= $c->countOwners() ?> Owners </a></td>
+					<? } else { ?>
+					<td>--</td> 
+				<? } ?>
+				<? if(USER_ROLE == 'admin') { ?>
+					<td width=200px>
+						<a href="<?= SITE_URL ?>categories.php?del=<?= $c->getId() ?>">Delete</a> | 
+						<a href="<?= SITE_URL ?>addCategory.php?edit=<?= $c->getId() ?>">Edit</a>
+					</td>
+					<? }else { ?>
+					<td></td>
+				<? } ?>
+			</tr>
+		<? } ?>	
+	</table>
+	<? } ?>
+	<? if($products){ ?>
+		<h1>Some Products</h1>
+		<table class=listing_tb>	
+			<tr>
+				<th></th>
+				<th><strong>Name</strong>s</th>
+				<th><strong>Unit Price</strong>s</th>
+				<th><strong>Stock Count</strong></th>
+				<th><strong>Category</strong></th>
+				<th><strong>Owner</strong></th>
+				<th><strong>Operations</strong></th>
+			</tr>
+			<? foreach($products as $p){ ?>
+				<tr>
+					<td>
+						<? if($p->getPhoto()) {?>
+							<image src="<?= $p->getPhoto(200) ?>"/>
+							<? } else { ?>
+							No Image
+						<? } ?>
+					</td>
+					<td><?= $p->getName() ?></td>
+					<td><?= $p->getPrice() ?> Rs.</td>
+					<td><?= $p->getQuantity() ?></td>
+					<td><?= $p->getCategory()->getName() ?></td>
+					<td><?= $p->getOwner()->getName() ?></td>
+					<td>
+						<a href="<?= SITE_URL ?>product.php?id=<?= $p->getId() ?>">View Details</a>
+						<? if(USER_ROLE == 'owner' && $p->getOwner()->getUserId() == USER_ID) { ?>
+							| <a href="<?= SITE_URL ?>addProduct.php?edit=<?= $p->getId() ?>">Edit</a> | 
+							<a href="<?= SITE_URL ?>products.php?del=<?= $p->getId() ?>">Delete</a>
+						<? } ?>
+					</td>
+				</tr>
+			<? } ?>
+		</table>
+	<? } ?>
+<? } ?>

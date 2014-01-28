@@ -1,0 +1,33 @@
+<table class=listing_tb>
+	<tr>
+		<td>Photo</td>
+		<td><Img src="<?=$user->getPhoto() ?>" /></td>
+	</tr>
+	<tr>
+		<td>Name</td>
+		<td><?=$user->getName() ?></td>
+	</tr>
+	<tr>
+		<td>Username</td>
+		<td><?=$user->getUsername() ?></td>
+	</tr>
+	<tr>
+		<td>Password</td>
+		<td>
+			<a href="<?= SITE_URL ?>register.php?edit=<?= $user->getId() ?>">change password</a>
+		</td>
+	</tr>
+	<tr>
+		<td>Registered as</td>
+		<td><?=$user->getRole() ?></td>
+	</tr>
+	<tr>
+		<td>Join Date</td>
+		<td><?=$user->getJoinDate() ?></td>
+	</tr>
+	<tr>
+	<td colspan=2 style="text-align: center;">
+		<a href="#">Update Info</a>
+	</td>
+	</tr>
+</table>

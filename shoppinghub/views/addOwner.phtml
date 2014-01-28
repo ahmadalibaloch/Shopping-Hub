@@ -1,0 +1,53 @@
+<h1>Add a new Owner</h1>
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+<form method=POST action="<?= SITE_URL ?>register.php"  enctype="multipart/form-data">
+	<table class=inputforms>
+		<input type=hidden name=role value=owner />
+		<tr>
+			<td>Owner Name:</td>
+			<td><input type=text name=name value="<?= array_value($_POST, 'name') ?>" required='required' ></td>
+		</tr>
+		<tr>
+			<td>Username:</td>
+			<td><input type=text name=username value="<?= array_value($_POST, 'username') ?>" required='required'></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td><input type=text name=password required='required'></td>
+		</tr>
+		<tr>
+			<td>Confirm Password:</td>
+			<td><input type=text name=password1 required='required'></td>
+		</tr>
+		<tr>
+			<td>Owner Image:</td>
+			<td><input type=file name=image placeholder='name here'></td>
+		</tr>
+		<tr>
+			<td>Owner Phone:</td>
+			<td><input type=tel name=phone value="<?= array_value($_POST, 'phone') ?>" required='required'></td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td><input type=email name=email value="<?= array_value($_POST, 'email') ?>" required='required' placeholder='example@domain.com'> </td>
+		</tr>
+		<tr>
+			<td>Owner Address:</td>
+			<td><textarea type=address name=address placeholder='address of the owner' style="width:200px; resize:none;"><?= array_value($_POST, 'address') ?></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>Owner Products Detail:</td>
+			<td>
+				<textarea type=text  name=business placeholder='owner products or business details, if any' style="width:200px; resize:none;"><?= array_value($_POST, 'business') ?></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type=submit value="Add"></td>
+		</tr>
+	</table>
+</form>
+

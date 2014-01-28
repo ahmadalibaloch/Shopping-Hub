@@ -1,0 +1,33 @@
+<h1>Upload Draft</h1>
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+	<table class=listing_tb>
+		<tr>
+			<td>Order ID:</td>
+			<td><?= $orderId ?></td>
+		</tr>
+		<tr>
+			<td>Order Date:</td>
+			<td><?= $orderDate ?></td>
+		</tr>
+		<tr>
+			<td>Draft Image:</td>
+			<td>
+				<form method=POST action="<?= SITE_URL ?>draft.php"  enctype="multipart/form-data">
+					<input type=hidden name=orderId value=<?= $orderId ?> />
+					<input type=file name=image />
+			</td>
+		</tr>
+		<tr>
+			<td>
+			You cant cancel after draft uploaded.
+			</td>
+			<td>
+				<input type=submit value=Upload />
+			</form>
+			</td>
+		</tr>
+	</table>
+</form>
+

@@ -1,0 +1,47 @@
+
+<h1>Add Product</h1>
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+<form  method=POST action="<?= SITE_URL ?>addProduct.php" enctype="multipart/form-data">
+		<? $product = $products?$products[0]:'' ?>
+		<input type=hidden name=id value="<?= $product?$product->getId():'' ?>" />
+		<table class=inputforms>
+			<tr>
+				<td>Product Name:</td>
+				<td>
+					<input type=text name=name required='required' value="<?= $product?$product->getName():'' ?>" />
+				</td>
+				<td rowspan=6>
+					<img src="<?= $product?$product->getPhoto():'' ?>" />
+				</td>
+			</tr>
+			<tr>
+				<td>Product Category:</td>
+				<td>
+					<select name=categoryId onchange=";">
+					<? foreach($categories as $c){ ?>
+						<option><?= $c->getName() ?></option>
+					<? } ?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Quantity:</td>
+				<td><input type=number min=1 value=1 name=quantity value="<?= $product?$product->getQuantity():'' ?>"></td>
+			</tr>
+			<tr>
+				<td>Price:</td>
+				<td><input type=number min= 1 value=1 name=price value="<?= $product?$product->getPrice():'' ?>" /> Rs.</td>
+
+			</tr>
+			<tr>
+				<td>Image:</td>
+				<td><input type=file name=image value="abs"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type=submit value="<?=  $product?'Update':'Add' ?>"></td>
+			</tr>
+		</table>
+</form>

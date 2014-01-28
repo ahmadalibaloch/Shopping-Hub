@@ -1,0 +1,53 @@
+* { margin: 0; padding: 0}
+body { font-family: Arial; font-size: 14px; background: #fff url(../images/background12.jpg) }
+a { text-decoration: none; color: #107886 }
+input, select, textarea { border: 1px solid maroon; border-radius: 2px; padding: 3px }
+input[type=submit], input[type=button] { color: white; font-weight: bold; padding: 3px 8px; cursor: pointer }
+h1 { color: #247BAC; text-shadow: 1px 1px 2px #818181; margin: 10px 0 }
+table { border-collapse: collapse }
+table td, table th { text-align: left; padding: 5px }
+table th { font-weight: bold; color: #247BAC; text-shadow: 1px 1px 2px #dbdbdb }
+
+#body { width: 960px; background: #fff; opacity: 0.9; padding: 15px; margin: 0 auto; min-height: 500px; border: 1px solid #a2a2a2 }
+.header { opacity: 1; background: #fff; clear: both; overflow: auto }
+.header .logo { float: left }
+.header .links { float: right }
+.header .links a { color: #247BAC }
+.header .title { font-size: 42px; font-weight: bold; color: #247BAC; padding: 5px 0; text-shadow: 1px 1px 2px #5A5A5A; font-family: sans-serif }
+.header .search { float: left; text-align: center; width: 820px; padding: 10px }
+.header .search input {padding: 4px; font-size: 16px; border-radius: 4px; position: relative; top: -8px; display: inline-block;}
+.header .search input[type=text] { padding: 5px; width: 370px;  margin-left: 20px;  }
+
+#nav { height: 37px; border: 1px solid #712730; border-radius: 5px; margin: 10px 0 }
+#nav, input[type=submit], input[type=button], .paging a, #nav > ul > li > ul > li a:hover { background: #bf4143;
+background: -moz-linear-gradient(top, #bf4143 0%, #a13742 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bf4143), color-stop(100%,#a13742));
+background: -webkit-linear-gradient(top, #bf4143 0%,#a13742 100%);
+background: -o-linear-gradient(top, #bf4143 0%,#a13742 100%);
+background: -ms-linear-gradient(top, #bf4143 0%,#a13742 100%);
+background: linear-gradient(top, #bf4143 0%,#a13742 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bf4143', endColorstr='#a13742',GradientType=0 ) }
+#nav > ul > li { float: left; display: block; position: relative }
+#nav > ul > li > a { border-right: 1px solid #712730; color: #fff; display: block; position: relative; padding: 12px 20px; font: bold 13px/100% Arial, Helvetica, sans-serif; text-shadow: 1px 1px 0 rgba(0,0,0, 0.4) }
+#nav > ul > li > a::after { border-color: #f0696c }
+#nav > ul > li > a::after { content: ''; position: absolute; border-right: 1px solid; top: -1px; bottom: -1px; right: -2px; z-index: 99 }
+#nav > ul > li > a:hover { background: #8f2f34 }
+#nav ul li.has-sub:hover ul { display: block }
+#nav ul li.has-sub > a:hover { background: #3f3f3f; border-color: #3f3f3f }
+#nav ul li.has-sub:hover > a { background: #3f3f3f; border-color: #3f3f3f; padding-bottom: 13px; padding-top: 13px; top: -1px; z-index: 999 }
+#nav ul li > ul{ display: none; width: 138px; position: absolute; top: 38px; padding: 10px 0; background: #3f3f3f; border-radius: 0 0 5px 5px; z-index: 999 }
+#nav ul li > ul li { display: block; list-style: inside none; padding: 0; margin: 0; position: relative }
+#nav ul li > ul li a { outline: none; display: block; position: relative; margin: 0; padding: 8px 20px; font: 10pt Arial, Helvetica, sans-serif; color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0, 0.5) }
+
+#content { min-height: 300px; padding: 10px }
+table.listing_tb td, table.listing_tb th { border: 1px dotted #CFCFCF }
+.info, .paging { margin: 10px 0 }
+.paging { width: 100%; text-align: center }
+.paging a { display: inline-block; padding: 5px 10px; margin: 1px; border-radius: 4px; color: white; font-weight: bold }
+.paging a.current { color: #00f5ff }
+
+.footer { padding: 26px; background: #646464; color: white; border-radius: 8px; border: 1px solid black; margin: 10px 0; text-align:center; line-height: 1.5em }
+.footer a { color: #00F5FF }
+
+.searching { font-weight: bold; font-style: italic }
+.message { padding: 9px; background: #D5A4A4; color: lime; border-radius: 4px; border: 1px solid #B87575; margin: 10px 0 }

@@ -1,0 +1,32 @@
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+<form method=post>
+	<table class='listing_tb'>
+		<tr>
+			<th><strong>Product Order Number</strong>s</th>
+			<th><strong>Product Name</strong>s</th>
+			<th><strong>Quantity</strong></th>
+			<th><strong>Unit Price</strong></th>
+			<th><strong>Total Price</strong></th>
+		</tr>
+		<? foreach($products as $p){ ?>
+		<tr>
+			<td><input type=hidden name="id[]" value="<?= $p->getId() ?>">000<?= $p->getId() ?></td>
+			<td><?= $p->getName() ?></td>
+			<td><input type=number name="quantity[]" value="<?= $p->quantity ?>"></td>
+			<td><?= $p->getPrice() ?></td>
+			<td><?= $p->totalPrice ?> Rs.</td>
+		</tr>
+		<? } ?>
+		<tr>
+			<td colspan=4><b>Grand Total:</b> </td>
+			<td><b><?= $totalPrice ?> Rs. </b></td>
+		</tr>
+	</table>
+	<div class=info>
+		<input type=submit name=update value="Update Cart" />
+		<input type=button onclick="location.href='order.php'" value="Place Order" />
+	</div>
+</form>
+

@@ -1,0 +1,65 @@
+		<h1><?= $owner->getName() ?></h1>
+	<table class=listing_tb width=100%>
+		<? if($message) { ?>
+		<tr>
+			<td colspan=2><?= $message?></td>
+		</tr>
+		<? } ?>
+		<tr>
+			<td>Owner Name:</td>
+			<td><?= $owner->getName() ?></td>
+			<td rowspan=8>
+					<?if($owner->getPhoto(100)) { ?>
+						<img src="<?= $owner->getPhoto(400) ?>"></td>
+					<? } else { ?>
+					No Image
+					<? } ?>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td><?= $owner->getEmail() ?></td>
+		</tr>
+		<tr>
+			<td>Phone:</td>
+			<td><?= $owner->getPhone() ?></td>
+		</tr>
+		<tr>
+			<td>Address:</td>
+			<td><?= $owner->getAddress() ?></td>
+		</tr>
+		<tr>
+			<td>Business Details:</td>
+			<td><?= $owner->getBusiness() ?></td>
+		</tr>
+		<tr>
+			<td>Total Products:</td>
+			<td>
+					<? if( $owner->countProducts() > 0 ) {?>
+					<a href="<?= SITE_URL ?>Products.php?owner=<?= $owner->getId() ?>"> View <?= $owner->countProducts() ?> Products</a></td>
+					<? } else { ?>
+					No Products Added
+					<? } ?>
+		</tr>
+		<tr>
+			<td>Total Categories:</td>
+			<td>
+				<? if( $owner->countCategories() > 0 ) {?>
+				<a href="<?= SITE_URL ?>categories.php?owner=<?= $owner->getId() ?>"> View <?= $owner->countCategories() ?> Categories</a></td>
+				<? } else { ?>
+				No Categories Added
+			<? } ?>
+		</tr>
+		<tr>
+			<td>Owner Rating:</td>
+			<td>
+			<? if( $owner->getRating() > 0 ) {?>
+			<?= $owner->getRating() ?>
+			<? } else { ?>
+				No Rated by any one
+			<? } ?>
+			</td>
+		</tr>
+		
+	</table>
+</form>
+

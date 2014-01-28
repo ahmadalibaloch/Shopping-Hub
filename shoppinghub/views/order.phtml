@@ -1,0 +1,50 @@
+<h1>Order Details</h1>
+<? if($message) { ?>
+<div class=message><?= $message?></div>
+<? } ?>
+<form  method=POST action="<?= SITE_URL ?>order.php" enctype="multipart/form-data">
+		<table class=inputforms>
+			<input type=hidden name=custId value="<?= $customer->getId() ?>" />
+			<input type=hidden name=orderId value="<?= $order->getId() ?>" />
+			<tr>
+				<td>Customer Name:</td>
+				<td>
+					<?= $customer->getName() ?>
+				</td>
+			</tr>
+			<tr>
+				<td>Products in Order:</td>
+				<td>
+						<?= $order->getProductCount() ?>
+						<a href="<?= SITE_URL ?>cart.php">View Products</a>
+				</td>
+			</tr>
+			<tr>
+				<td>Total Price:</td>
+				<td><?= $order->getTotalPrice() ?></td>
+			</tr>
+			<tr>
+				<td>Order Date:</td>
+				<td><?= $order->getOrderDate() ?></td>
+			</tr>
+			<tr>
+				<td>Shipping Address:</td>
+				<td>
+					<textarea name=shippingAddress><?= $customer->getAddress() ?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2><b>Note:</b> you have to upload bank draft for this order from 'orders' menu, so that admin can process it.</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<? if($order->getProductCount() == 0){ ?>
+					<input type=button onclick="location.href='products.php'" value="Add Products to Card" />
+					<? } else { ?>
+					<input type=submit value="Order Now">
+					<? } ?>
+				</td>
+			</tr>
+		</table>
+</form>
